@@ -25,8 +25,6 @@ export interface PressableProps extends RNPressableProps {
   onMouseLeave?: (event: NativeSyntheticEvent<TargetedEvent>) => void;
 
   style?: any;
-
-  useNativeDriver?: boolean;
 }
 
 const Pressable: React.FC<PressableProps> = ({
@@ -40,7 +38,6 @@ const Pressable: React.FC<PressableProps> = ({
   android_ripple,
   onMouseEnter,
   onMouseLeave,
-  useNativeDriver,
   children,
   ...rest
 }) => {
@@ -89,7 +86,7 @@ const Pressable: React.FC<PressableProps> = ({
           ),
           easing: Easing.out(Easing.ease),
           duration: 400,
-          useNativeDriver,
+          useNativeDriver: true,
         }).start();
       }
     },
@@ -106,7 +103,7 @@ const Pressable: React.FC<PressableProps> = ({
           toValue: 0,
           easing: Easing.out(Easing.ease),
           duration: 400,
-          useNativeDriver,
+          useNativeDriver: true,
         }).start(() => {
           setRipples((prevState) => prevState.slice(1));
         });

@@ -40,8 +40,6 @@ export interface FABProps extends Omit<SurfaceProps, 'hitSlop'>, Omit<PressableP
   labelStyle?: StyleProp<TextStyle>;
 
   loadingOverlayContainerStyle?: StyleProp<ViewStyle>;
-
-  useNativeDriver?: boolean;
 }
 
 const FAB: React.FC<FABProps> = ({
@@ -62,7 +60,6 @@ const FAB: React.FC<FABProps> = ({
   labelContainerStyle,
   labelStyle,
   loadingOverlayContainerStyle,
-  useNativeDriver,
 
   pressEffect,
   pressEffectColor,
@@ -143,7 +140,7 @@ const FAB: React.FC<FABProps> = ({
     Animated.timing(animated, {
       toValue: visible ? 1 : 0,
       duration: 200,
-      useNativeDriver,
+      useNativeDriver: true,
     }).start();
   }, [visible]);
 
@@ -201,7 +198,7 @@ const FAB: React.FC<FABProps> = ({
     [onPressOut]
   );
 
-  const animatedElevation = useAnimatedElevation(pressed ? 12 : 6, useNativeDriver);
+  const animatedElevation = useAnimatedElevation(pressed ? 12 : 6, true);
 
   return (
     <Surface style={[animatedElevation, styles.container, { transform: [{ scale: animated }] }, style]} {...rest}>

@@ -130,8 +130,6 @@ export interface ButtonProps extends Omit<SurfaceProps, 'hitSlop'>, Omit<Pressab
    * The style of the button's loading indicator overlay view. No effect if `loadingIndicatorPosition` is not `overlay`.
    */
   loadingOverlayContainerStyle?: StyleProp<ViewStyle>;
-
-  useNativeDriver?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -147,7 +145,6 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   loadingIndicatorPosition = 'leading',
   loadingIndicator,
-  useNativeDriver,
 
   style,
   pressableContainerStyle,
@@ -322,7 +319,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const animatedElevation = useAnimatedElevation(
     variant === 'contained' && !disableElevation && !disabled ? (pressed ? 8 : hovered ? 4 : 2) : 0,
-    useNativeDriver
+    true
   );
 
   return (
