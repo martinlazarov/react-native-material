@@ -87,6 +87,8 @@ export interface TextInputProps extends RNTextInputProps {
    * The style of the text input's trailing element container.
    */
   trailingContainerStyle?: StyleProp<ViewStyle>;
+
+  useNativeDriver?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = React.forwardRef(
@@ -105,6 +107,7 @@ const TextInput: React.FC<TextInputProps> = React.forwardRef(
       inputStyle,
       leadingContainerStyle,
       trailingContainerStyle,
+      useNativeDriver,
 
       placeholder,
       onFocus,
@@ -173,7 +176,7 @@ const TextInput: React.FC<TextInputProps> = React.forwardRef(
         toValue: focused ? 1 : 0,
         duration: 200,
         easing: Easing.out(Easing.ease),
-        useNativeDriver: false,
+        useNativeDriver,
       }).start();
     }, [focused]);
 
@@ -186,7 +189,7 @@ const TextInput: React.FC<TextInputProps> = React.forwardRef(
         toValue: active ? 1 : 0,
         duration: 200,
         easing: Easing.out(Easing.ease),
-        useNativeDriver: false,
+        useNativeDriver,
       }).start();
     }, [active]);
 
